@@ -1,0 +1,4 @@
+#!/bin/bash
+SCRIPT_DIR=$(realpath $(dirname "$0"))
+source $SCRIPT_DIR/.venv/bin/activate
+nohup google-chrome $(python3 $SCRIPT_DIR/main.py) >/dev/null 2>&1 &
