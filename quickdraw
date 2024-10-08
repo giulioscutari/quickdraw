@@ -1,4 +1,16 @@
 #!/bin/bash
 SCRIPT_DIR=$(realpath $(dirname "$0"))
 source $SCRIPT_DIR/.venv/bin/activate
-nohup google-chrome $(python3 $SCRIPT_DIR/main.py) >/dev/null 2>&1 &
+URL=$(python3 $SCRIPT_DIR/main.py)
+echo $URL
+if [[ "$OSTYPE" == "darwin"* ]]; then
+        # Mac OSX
+        open $URL
+elif [[ "$OSTYPE" == "linux-gnu" ]]; then
+        # Linux
+        xdg-open $URL
+fi
+
+# Well that definitely works better. Only problem is the mess that is on the desktop. 
+# However if the trick to open the link outside of WSL sets the default browser, 
+# the xdg-open option will work there too.
